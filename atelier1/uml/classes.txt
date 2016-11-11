@@ -1,0 +1,129 @@
+@startuml
+
+!define SERVICE (S, orange) Service
+
+title
+Présentation du projet
+Diagramme de classe
+end title
+
+hide empty fields
+hide empty methods
+
+package "Services de fabrication" <<Frame>> {
+	class Concessionnaire <<SERVICE>> {
+		-ConstructeurPeugeot peugeot
+		-ConstructeurRenault renault
+		+CleVoiture commanderVoiture(ModelePeugeot modele)
+		+CleVoiture commanderVoiture(ModeleRenault modele)
+	}
+	hide Concessionnaire fields
+	
+	interface ConstructeurAutomobile<T extends ModeleVoiture> {
+		CleVoiture fabriquerVoiture(T modele)
+	}
+	
+	class ConstructeurPeugeot <<SERVICE>> {
+		-{static}int sequenceNumeroSerie
+		+CleVoiture fabriquerVoiture(ModelePeugeot modele)
+	}
+	hide ConstructeurPeugeot fields
+	
+	class ConstructeurRenault <<SERVICE>> {
+		-{static}int sequenceNumeroSerie
+		+CleVoiture fabriquerVoiture(ModeleRenault modele)
+	}
+	hide ConstructeurRenault fields
+	
+	class ConstructeurCle <<SERVICE>> {
+		-int sequenceCle
+		+String getCle()
+	}
+	hide ConstructeurCle fields
+}
+
+package Voiture <<Frame>> {
+	interface Voiture {
+		ModeleVoiture getModele()
+		void demarrer(String cle)
+		void arreter()
+		void rouler(int distance)
+		void remplirReservoir(int litre)
+	}
+	
+	abstract AbstractVoiture {
+		#ModeleVoiture modele
+		#boolean moteurEnMarche
+		#int kilometrage
+		#Reservoire reservoire
+		#String cle
+		#String numeroSerie
+		#AbstractVoiture(ModeleVoiture modele, String cle, String numeroSerie)
+		+ModeleVoiture getModele()
+		+void demarrer(String cle)
+		+void arreter()
+		+void rouler(int distance)
+		+void remplirReservoir(int litre)
+		+String toString()
+	}
+	
+	class Reservoire {
+		-{static}int CAPACITE_MIN
+		-int CAPACITE_MAX
+		-double capaciteActuelle
+		+Reservoire(int capaciteMax)
+		+int getCapaciteMax()
+		+double getCapaciteActuelle()
+		+double remplir(int litre)
+		+double vider(double litre)
+		+boolean isVide()
+		+boolean isPlein()
+		+String toString()
+	}
+	
+	interface ModeleVoiture {
+		String getNom()
+		String getConstructeurAutomobile()
+		int getCapaciteReservoire()
+		String getClasse()
+		double getConsommation()
+	}
+	
+	enum ModelePeugeot {
+		P305
+		P306
+		P307
+	}
+	class P305
+	class P306
+	class P307
+	
+	enum ModeleRenault {
+		R5
+	}
+	class R5
+}
+
+ConstructeurAutomobile <|.. ConstructeurPeugeot
+ConstructeurAutomobile <|.. ConstructeurRenault
+
+Concessionnaire -- ConstructeurPeugeot : commande >
+Concessionnaire -- ConstructeurRenault : commande >
+
+ConstructeurPeugeot -- ConstructeurCle  : commande >
+ConstructeurRenault -- ConstructeurCle : commande >
+
+
+ModeleVoiture <|.. ModelePeugeot
+ModeleVoiture <|.. ModeleRenault
+
+AbstractVoiture o- ModeleVoiture
+Reservoire -* AbstractVoiture
+
+Voiture <|.. AbstractVoiture
+AbstractVoiture <|--- P305
+AbstractVoiture <|--- P306
+AbstractVoiture <|--- P307
+AbstractVoiture <|--- R5
+
+@enduml

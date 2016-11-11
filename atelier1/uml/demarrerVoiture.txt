@@ -1,0 +1,80 @@
+@startuml
+
+hide circle
+
+class "**UC-demarrerVoiture - Simple**" as ucSimple {
+	**Nom :** UC-demarrerVoiture
+	--
+	**Sous-système :** Voiture
+	--
+	**Acteur :** Conducteur
+	==
+	**Scénario Nominal :**
+		1. Vérifier que le moteur est éteint.
+		2. Vérifier que la clé est correcte.
+		3. Vérifier que la voiture a de l'essence.
+		4. Démarrer la voiture.
+	==
+	**Scénario alternatif A1 :**
+		Lors de l'étape 1, le moteur est allumé.
+		2. Il ne se passe rien.
+		Fin du scénario.
+	==
+	**Scénario alternatif A2 :**
+		Lors de l'étape 2, la clé est incorrecte.
+		3. Refuser de démarrer.
+		Fin du scénario.
+	==
+	**Scénario alternatif A3 :**
+		Lors de l'étape 3, la voiture n'a plus d'essence.
+		4. Refuser de démarrer.
+		Fin du scénario.
+	
+}
+
+class "**UC-demarrerVoiture - Complexe**" as ucComplexe {
+	**Nom :** UC-Conducteur-demarrerVoiture
+	--
+	**Sous-système :** Monde réel
+	--
+	**Acteur :** Conducteur
+	==
+	**Scénario Nominal :**
+		1. Chercher la clé dans sa poche.
+		2. Ouvrir la portière.
+		3. Entrer dans la voiture.
+		4. Démarrer la voiture.
+		5. Conduire jusqu'à la destination.
+	==
+	**Scénario alternatif A1 :**
+		Lors de l'étape 1, la clé n'est pas trouvée.
+		2. Chercher la clé ailleurs.
+		3. Trouver la clé.
+		4. Revenir à la voiture.
+		5. Reprise du scénario nominal à l'étape 2.
+	==
+	**Scénario alternatif A2 :**
+		Lors de l'étape 2, la porte est givrée.
+		3. Rentrer chez soi pour trouver une bombe dégivrante.
+		4. Uriner sur la portière si aucune bombe dégivrante n'a été trouvée.
+		5. Reprise du scénario nominal à l'étape 3.
+	==
+	**Scénario alternatif A3 :**
+		Lors de l'étape 3, voir que la jauge d'essence est vide.
+		5. Aller à une station essence avec un bidon.
+		6. Se rendre compte qu'il est interdit de remplir un bidon d'essence avec Vigipirate.
+		7. Pleurer.
+		8. Devenir hors-la-loi et remplir son bidon quand même.
+		9. Retourner à sa voiture.
+		10. Remplir le réservoire.
+		11. Reprise du scénario nominal à l'étape 4.
+	==
+	**Scénario d'exception E1 :**
+		Lors de l'étape 4, la voiture ne démarre pas et des indicateurs rouges s'allument.
+		5. Appeler le garagiste.
+		6. Prendre les transports en commun.
+		7. Arriver à destination.
+		Fin du scénario.
+}
+
+@enduml

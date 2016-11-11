@@ -1,0 +1,65 @@
+@startuml
+
+!define CONCESSIONNAIRE
+!define CONDUCTEUR
+!define CONSTRUCTEUR
+!define VOITURE
+
+left to right direction
+
+!ifdef CONCESSIONNAIRE
+	actor concessionnaire as :Concessionnaire:
+	
+	frame "Constructeur Automobile" {
+		usecase obtenirVoiture as (Obtenir une voiture)
+	}
+	
+	concessionnaire --> obtenirVoiture
+!endif
+
+!ifdef CONDUCTEUR
+	actor conducteur as :Conducteur:
+	
+	frame "Concessionnaire" {
+		usecase commanderVoiture as (Commander une voiture)
+	}
+	
+	frame Voiture {
+		usecase demarrer as (Démarrer la voiture)
+		usecase arreter as (Arrêter la voiture)
+		usecase rouler as (Rouler)
+		usecase remplirReservoire as (Remplir le réservoire)
+	}
+	
+	conducteur --> commanderVoiture
+	conducteur --> demarrer
+	conducteur --> arreter
+	conducteur --> rouler
+	conducteur --> remplirReservoire
+!endif
+
+!ifdef CONSTRUCTEUR
+	actor constructeurAutomobile as :Constructeur Automobile:
+	
+	frame "Constructeur de clé" {
+		usecase obtenirCle as (Obtenir une clé)
+	}
+	
+	constructeurAutomobile --> obtenirCle
+!endif
+
+!ifdef VOITURE
+	actor voiture as :Voiture:
+	
+	frame Reservoire {
+		usecase remplir as (Remplir le réservoire)
+		usecase vider as (Vider le réservoire)
+		usecase testerContenu as (Tester le contenu du réservoire)
+	}
+	
+	voiture --> remplir
+	voiture --> vider
+	voiture --> testerContenu
+!endif
+
+@enduml
