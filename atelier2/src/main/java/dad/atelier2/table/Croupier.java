@@ -65,7 +65,7 @@ public class Croupier {
 
 	@Override
 	public String toString() {
-		return "Croupier [joueurs=" + joueurs + ",\n paquet=" + paquet + "]";
+		return "Croupier [joueurs=" + joueurs + ",\n paquet=" + paquet + "]\n";
 	}
 
 }

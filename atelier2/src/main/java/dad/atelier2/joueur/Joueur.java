@@ -26,7 +26,7 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur [nom=" + nom + ",\n main=" + main + "]";
+		return "Joueur [nom=" + nom + ", main=" + main + "]\n";
 	}
 
 	public String getNom() {
