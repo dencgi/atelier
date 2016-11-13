@@ -1,36 +1,50 @@
 package dad.atelier3.mockito;
 
 import static org.junit.Assert.*;
+
+import javax.annotation.Resource;
+import javax.naming.OperationNotSupportedException;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import dad.atelier3.controller.MonControleur;
-import dad.atelier3.dto.FormulaireDTO;
-import dad.atelier3.model.Individu;
+import dad.atelier3.Vue;
 import dad.atelier3.service.ServiceIndividu;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+/*
+ * Mock vide avec mockito.
+ */
+@RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
 public class ServiceIndividuTest_1 {
 
-	@Autowired
+	@Resource
+	@InjectMocks
+	private Vue vue;
+
+	@Resource
+	@Mock
 	private ServiceIndividu serviceIndividu;
 
-	@Autowired
-	private MonControleur monControleur;
-
-	@Test(expected = NullPointerException.class)
-	public void monControleurTest() {
-		monControleur.traiterAction(new FormulaireDTO());
+	@Before
+	public void mock() {
+		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
-	public void serviceTest() {
-		Individu ind = serviceIndividu.find("idRef-489");
-		assertNotNull("L'individu est null !", ind);
+	public void traitementReplaceTest() throws OperationNotSupportedException {
+		vue.start();
+		vue.traitement("int-nom-toto");
+		vue.traitement("int-prenom-titi");
+		vue.done();
+
+		assertNull("Il n'y a pas d'individu car le mock ne fait rien", vue.getIndividu());
 	}
 
 }
