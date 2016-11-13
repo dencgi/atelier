@@ -21,7 +21,7 @@ public class Main implements Iterable<Carte> {
 		main.add(carte);
 	}
 	
-	public boolean isMainPleine() {
+	public boolean isPleine() {
 		return main.size() == TAILLE_MAX;
 	}
 
