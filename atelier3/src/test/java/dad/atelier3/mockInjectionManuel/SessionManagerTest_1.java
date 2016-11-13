@@ -14,7 +14,7 @@ import dad.atelier3.model.Individu;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
-public class ServiceIndividuTest_1 {
+public class SessionManagerTest_1 {
 
 	@Autowired
 	private Vue vue;
@@ -30,21 +30,27 @@ public class ServiceIndividuTest_1 {
 	public void bonneCommandeInterimaireTest() throws OperationNotSupportedException {
 		vue.start();
 		vue.traitement("int-nom-azerty");
+		Individu ind1 = vue.getIndividu();
 		vue.traitement("int-prenom-titi");
+		Individu ind2 = vue.getIndividu();
 		vue.done();
 
+		assertSame("Il s'agit d'un seul et même individu", ind1, ind2);
 		assertEquals("Il s'agit d'un intérimaire", Individu.Type.INTERIMAIRE, vue.getIndividu().getType());
 		assertEquals("Le nom a été remplacé", "azerty", vue.getIndividu().getNom());
 		assertEquals("Le prénom a été remplacé", "titi", vue.getIndividu().getPrenom());
 	}
-	
+
 	@Test
 	public void bonneCommandeCandidatTest() throws OperationNotSupportedException {
 		vue.start();
 		vue.traitement("can-nom-azerty");
+		Individu ind1 = vue.getIndividu();
 		vue.traitement("can-prenom-titi");
+		Individu ind2 = vue.getIndividu();
 		vue.done();
 
+		assertSame("Il s'agit d'un seul et même individu", ind1, ind2);
 		assertEquals("Il s'agit d'un candidat", Individu.Type.CANDIDAT, vue.getIndividu().getType());
 		assertEquals("Le nom a été remplacé", "azerty", vue.getIndividu().getNom());
 		assertEquals("Le prénom a été remplacé", "titi", vue.getIndividu().getPrenom());

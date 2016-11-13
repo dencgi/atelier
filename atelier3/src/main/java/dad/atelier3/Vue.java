@@ -38,6 +38,7 @@ public class Vue {
 
 	public void start() {
 		session = sessionManager.getCurrentSession();
+		individu = null;
 	}
 
 	public void traitement(String commande) throws OperationNotSupportedException {
