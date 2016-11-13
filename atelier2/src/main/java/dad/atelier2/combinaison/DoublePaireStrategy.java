@@ -10,7 +10,7 @@ public class DoublePaireStrategy extends AbstractStrategy implements Verificatio
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a une carte seule et deux paires.
-		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main));
+		return hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main);
 	}
 
 }

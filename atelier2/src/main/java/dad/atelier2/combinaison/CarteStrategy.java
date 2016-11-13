@@ -12,7 +12,7 @@ public class CarteStrategy extends AbstractStrategy implements VerificationStrat
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a cinq cartes différentes.
-		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && !COULEUR_STRATEGIE.isOK(main) && !SUITE_STRATEGIE.isOK(main));
+		return hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && !COULEUR_STRATEGIE.isOK(main) && !SUITE_STRATEGIE.isOK(main);
 	}
 
 }

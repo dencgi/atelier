@@ -2,6 +2,7 @@ package dad.atelier2.table;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import dad.atelier2.carte.Carte;
 import dad.atelier2.carte.Couleur;
@@ -33,7 +34,7 @@ public class Paquet {
 		if (isVide()) {
 			throw new PaquetVideException();
 		}
-		int i = (int) (Math.random() * cartes.size());
+		int i = new Random().nextInt(cartes.size());
 		return cartes.remove(i);
 	}
 

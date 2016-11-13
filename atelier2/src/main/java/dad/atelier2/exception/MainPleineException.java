@@ -5,6 +5,7 @@ public class MainPleineException extends RuntimeException {
 	private static final long serialVersionUID = -541682877613493447L;
 
 	public MainPleineException() {
+		super();
 	}
 
 	public MainPleineException(String arg0) {

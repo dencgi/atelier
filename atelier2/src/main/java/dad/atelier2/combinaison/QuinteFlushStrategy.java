@@ -9,7 +9,7 @@ public class QuinteFlushStrategy implements VerificationStrategy {
 
 	@Override
 	public boolean isOK(Main main) {
-		return (couleurStrat.isOK(main) && suiteStrat.isOK(main));
+		return couleurStrat.isOK(main) && suiteStrat.isOK(main);
 	}
 
 }

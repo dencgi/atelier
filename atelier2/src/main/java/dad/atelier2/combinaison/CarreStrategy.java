@@ -10,7 +10,7 @@ public class CarreStrategy extends AbstractStrategy implements VerificationStrat
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a une carte unique et un carre.
-		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_CARRE, TAILLE_CARRE, main));
+		return hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_CARRE, TAILLE_CARRE, main);
 	}
 
 }

@@ -1,5 +1,7 @@
 package dad.atelier2.carte;
 
+import java.util.Random;
+
 public class FabriqueCarte {
 
 	public static Carte getCarte() {
@@ -8,13 +10,13 @@ public class FabriqueCarte {
 
 	public static Couleur getCouleur() {
 		Couleur[] couleurs = Couleur.values();
-		int hasard = (int) (Math.random() * couleurs.length);
+		int hasard = new Random().nextInt(couleurs.length);
 		return couleurs[hasard];
 	}
 
 	public static Valeur getValeur() {
 		Valeur[] valeurs = Valeur.values();
-		int hasard = (int) (Math.random() * valeurs.length);
+		int hasard = new Random().nextInt(valeurs.length);
 		return valeurs[hasard];
 	}
 }

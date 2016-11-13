@@ -17,7 +17,7 @@ public class Croupier {
 	public Croupier() {
 		joueurs = new ArrayList<>();
 		paquet = new Paquet();
-		classement = new LinkedHashMap<>();
+		classement = new LinkedHashMap<>(); // NOSONAR
 
 		// Initialisation du classement des joueurs.
 		for (Combinaison combinaison : Combinaison.valuesDescendingSort()) {
@@ -55,9 +55,9 @@ public class Croupier {
 
 	public List<Joueur> getGagnants() {
 		determinerClassement();
-		for (List<Joueur> joueurs : classement.values()) {
-			if (!joueurs.isEmpty()) {
-				return joueurs;
+		for (List<Joueur> gagnantsPotentiels : classement.values()) {
+			if (!gagnantsPotentiels.isEmpty()) {
+				return gagnantsPotentiels;
 			}
 		}
 		return new ArrayList<>();

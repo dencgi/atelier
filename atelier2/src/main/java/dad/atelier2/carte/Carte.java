@@ -1,6 +1,6 @@
 package dad.atelier2.carte;
 
-final public class Carte implements Comparable<Carte> {
+public final class Carte implements Comparable<Carte> {
 
 	private final Couleur couleur;
 	private final Valeur valeur;
@@ -42,7 +42,7 @@ final public class Carte implements Comparable<Carte> {
 		if (getClass() != obj.getClass())
 			return false;
 		Carte other = (Carte) obj;
-		return (couleur == other.couleur && valeur == other.valeur);
+		return couleur == other.couleur && valeur == other.valeur;
 	}
 
 	@Override

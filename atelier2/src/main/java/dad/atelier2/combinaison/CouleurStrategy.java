@@ -9,7 +9,7 @@ public class CouleurStrategy extends AbstractStrategy implements VerificationStr
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a cinq cartes de la même couleur.
-		return (hasRegroupementCouleur(NOMBRE_COULEUR, TAILLE_COULEUR, main));
+		return hasRegroupementCouleur(NOMBRE_COULEUR, TAILLE_COULEUR, main);
 	}
 
 }

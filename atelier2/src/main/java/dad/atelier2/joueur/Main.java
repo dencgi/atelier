@@ -13,9 +13,10 @@ public class Main implements Iterable<Carte> {
 	private static final int TAILLE_VIDE = 0;
 	private static final int TAILLE_MAX = 5;
 
-	private List<Carte> main = new ArrayList<>();
+	private List<Carte> cartes = new ArrayList<>();
 
 	public Main() {
+		super();
 	}
 
 	public Main(Main other) {
@@ -25,32 +26,32 @@ public class Main implements Iterable<Carte> {
 	}
 
 	public void add(Carte carte) {
-		if (main.size() >= TAILLE_MAX) {
+		if (cartes.size() >= TAILLE_MAX) {
 			throw new MainPleineException();
 		}
-		main.add(carte);
+		cartes.add(carte);
 	}
 
 	public boolean isPleine() {
-		return main.size() == TAILLE_MAX;
+		return cartes.size() == TAILLE_MAX;
 	}
 
 	public boolean isVide() {
-		return main.size() == TAILLE_VIDE;
+		return cartes.size() == TAILLE_VIDE;
 	}
 
 	public void trier() {
-		Collections.sort(main);
+		Collections.sort(cartes);
 	}
 
 	@Override
 	public String toString() {
-		return main.toString();
+		return cartes.toString();
 	}
 
 	@Override
 	public Iterator<Carte> iterator() {
-		return main.iterator();
+		return cartes.iterator();
 	}
 
 }

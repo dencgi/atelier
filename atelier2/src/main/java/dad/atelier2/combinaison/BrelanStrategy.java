@@ -10,7 +10,7 @@ public class BrelanStrategy extends AbstractStrategy implements VerificationStra
 	@Override
 	public boolean isOK(Main main) {
 		// Un brelan et deux cartes uniques.
-		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_BRELAN, TAILLE_BRELAN, main));
+		return hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_BRELAN, TAILLE_BRELAN, main);
 	}
 
 }

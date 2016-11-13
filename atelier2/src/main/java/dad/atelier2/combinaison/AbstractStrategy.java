@@ -1,7 +1,7 @@
 package dad.atelier2.combinaison;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import dad.atelier2.carte.Carte;
@@ -18,7 +18,7 @@ public abstract class AbstractStrategy implements VerificationStrategy {
 	protected static final int TAILLE_COULEUR = 5;
 	
 	private Map<Valeur, Integer> regrouperValeur(Main main) {
-		Map<Valeur, Integer> analyse = new HashMap<>();
+		Map<Valeur, Integer> analyse = new EnumMap<>(Valeur.class);
 		for (Carte carte : main) {
 			Valeur valeur = carte.getValeur();
 			analyse.put(valeur, (analyse.containsKey(valeur) ? analyse.get(valeur) : 0) + 1);
@@ -27,7 +27,7 @@ public abstract class AbstractStrategy implements VerificationStrategy {
 	}
 
 	private Map<Couleur, Integer> regrouperCouleur(Main main) {
-		Map<Couleur, Integer> analyse = new HashMap<>();
+		Map<Couleur, Integer> analyse = new EnumMap<>(Couleur.class);
 		for (Carte carte : main) {
 			Couleur couleur = carte.getCouleur();
 			analyse.put(couleur, (analyse.containsKey(couleur) ? analyse.get(couleur) : 0) + 1);

@@ -21,7 +21,7 @@ public class SuiteStrategy extends AbstractStrategy implements VerificationStrat
 					return false;
 				}
 				valeurPrecedente = carte.getValeur();
-			} catch (NoNextValueException e) {
+			} catch (NoNextValueException e) { //NOSONAR
 				return false;
 			}
 		}

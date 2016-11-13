@@ -10,7 +10,7 @@ public class PaireStrategy extends AbstractStrategy implements VerificationStrat
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a trois cartes seules et une paire.
-		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main));
+		return hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main);
 	}
 
 }

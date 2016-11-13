@@ -10,7 +10,7 @@ public class FullStrategy extends AbstractStrategy implements VerificationStrate
 	@Override
 	public boolean isOK(Main main) {
 		// Il y a une paire et un brelan.
-		return (hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main) && hasRegroupementValeur(NOMBRE_BRELAN, TAILLE_BRELAN, main));
+		return hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main) && hasRegroupementValeur(NOMBRE_BRELAN, TAILLE_BRELAN, main);
 	}
 
 }

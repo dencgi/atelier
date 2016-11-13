@@ -5,6 +5,7 @@ public class PaquetVideException extends RuntimeException {
 	private static final long serialVersionUID = 4459131340797644907L;
 
 	public PaquetVideException() {
+		super();
 	}
 
 	public PaquetVideException(String arg0) {
