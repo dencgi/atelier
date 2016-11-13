@@ -9,7 +9,7 @@ import org.springframework.test.annotation.Repeat;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import dad.atelier3.mockInjectionManuel.config.Config_3_MockAutowired;
+import dad.atelier3.mock_manuel.config.Config_3_MockAutowired;
 import dad.atelier3.model.Individu;
 import dad.atelier3.service.ServiceIndividu;
 

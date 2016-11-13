@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import dad.atelier3.controller.MonControleur;
 import dad.atelier3.dto.FormulaireDTO;
-import dad.atelier3.mockInjectionManuel.config.Config_4_MockAutowired;
+import dad.atelier3.mock_manuel.config.Config_4_MockAutowired;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config_4_MockAutowired.class)

@@ -1,8 +1,6 @@
-package dad.atelier3.mockInjectionManuel;
+package dad.atelier3.mock_manuel;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -20,6 +18,9 @@ import dad.atelier3.model.Individu;
 import dad.atelier3.model.Session;
 import dad.atelier3.service.SessionManager;
 
+/*
+ * Tests avec un mock fait main.
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
 public class SessionManagerTest_2_MockSimple {

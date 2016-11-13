@@ -1,4 +1,4 @@
-package dad.atelier3.mockInjectionManuel;
+package dad.atelier3.mock_manuel;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -12,6 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dad.atelier3.Vue;
 import dad.atelier3.model.Individu;
 
+/*
+ * Tests "normaux".
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
 public class SessionManagerTest_1 {

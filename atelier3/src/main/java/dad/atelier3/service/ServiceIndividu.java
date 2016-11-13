@@ -54,6 +54,10 @@ public class ServiceIndividu {
 
 	public Individu remplacer(String refIndividu, String commande) throws OperationNotSupportedException {
 		Individu individu = getRepo(commande).find(refIndividu);
+		// Dans le cas où aucun individu n'est trouvé.
+		if (individu == null) {
+			return null;
+		}
 		if ("nom".equals(getNomAttribut(commande))) {
 			individu.setNom(getValeur(commande));
 		}
@@ -65,6 +69,10 @@ public class ServiceIndividu {
 
 	public Individu ajouter(String refIndividu, String commande) throws OperationNotSupportedException {
 		Individu individu = getRepo(commande).find(refIndividu);
+		// Dans le cas où aucun individu n'est trouvé.
+		if (individu == null) {
+			return null;
+		}
 		if ("nom".equals(getNomAttribut(commande))) {
 			individu.setNom(individu.getNom() + getValeur(commande));
 		}
