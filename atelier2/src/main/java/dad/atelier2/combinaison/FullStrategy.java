@@ -1,19 +1,16 @@
 package dad.atelier2.combinaison;
 
-import java.util.Collection;
-import java.util.Map;
-
-import dad.atelier2.carte.Valeur;
 import dad.atelier2.joueur.Main;
 
 public class FullStrategy extends AbstractStrategy implements VerificationStrategy {
 
+	private static final int NOMBRE_PAIRE = 1;
+	private static final int NOMBRE_BRELAN = 1;
+
 	@Override
 	public boolean isOK(Main main) {
-		Map<Valeur, Integer> analyse = analyserValeur(main);
-		Collection<Integer> nombreValeur = analyse.values();
 		// Il y a une paire et un brelan.
-		return (compter(nombreValeur, 2) == 1 && compter(nombreValeur, 3) == 1);
+		return (hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main) && hasRegroupementValeur(NOMBRE_BRELAN, TAILLE_BRELAN, main));
 	}
 
 }

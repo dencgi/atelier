@@ -1,19 +1,16 @@
 package dad.atelier2.combinaison;
 
-import java.util.Collection;
-import java.util.Map;
-
-import dad.atelier2.carte.Valeur;
 import dad.atelier2.joueur.Main;
 
 public class PaireStrategy extends AbstractStrategy implements VerificationStrategy {
 
+	private static final int NOMBRE_CARTE_UNIQUE = 3;
+	private static final int NOMBRE_PAIRE = 1;
+
 	@Override
 	public boolean isOK(Main main) {
-		Map<Valeur, Integer> analyse = analyserValeur(main);
-		Collection<Integer> nombreValeur = analyse.values();
 		// Il y a trois cartes seules et une paire.
-		return (compter(nombreValeur, 1) == 3 && compter(nombreValeur, 2) == 1);
+		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_PAIRE, TAILLE_PAIRE, main));
 	}
 
 }

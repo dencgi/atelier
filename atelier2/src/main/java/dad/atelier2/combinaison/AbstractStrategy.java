@@ -11,7 +11,13 @@ import dad.atelier2.joueur.Main;
 
 public abstract class AbstractStrategy implements VerificationStrategy {
 
-	protected Map<Valeur, Integer> analyserValeur(Main main) {
+	protected static final int TAILLE_CARTE_UNIQUE = 1;
+	protected static final int TAILLE_PAIRE = 2;
+	protected static final int TAILLE_BRELAN = 3;
+	protected static final int TAILLE_CARRE = 4;
+	protected static final int TAILLE_COULEUR = 5;
+	
+	private Map<Valeur, Integer> regrouperValeur(Main main) {
 		Map<Valeur, Integer> analyse = new HashMap<>();
 		for (Carte carte : main) {
 			Valeur valeur = carte.getValeur();
@@ -20,7 +26,7 @@ public abstract class AbstractStrategy implements VerificationStrategy {
 		return analyse;
 	}
 
-	protected Map<Couleur, Integer> analyserCouleur(Main main) {
+	private Map<Couleur, Integer> regrouperCouleur(Main main) {
 		Map<Couleur, Integer> analyse = new HashMap<>();
 		for (Carte carte : main) {
 			Couleur couleur = carte.getCouleur();
@@ -29,14 +35,28 @@ public abstract class AbstractStrategy implements VerificationStrategy {
 		return analyse;
 	}
 
-	protected int compter(Collection<Integer> liste, int chiffre) {
-		int compteur = 0;
-		for (int i : liste) {
-			if (i == chiffre) {
-				++compteur;
+	private int compterNombreRegroupement(Collection<Integer> tailles, int tailleAttendue) {
+		int nombreRegroupements = 0;
+		for (int taille : tailles) {
+			if (taille == tailleAttendue) {
+				++nombreRegroupements;
 			}
 		}
-		return compteur;
+		return nombreRegroupements;
+	}
+
+	protected boolean hasRegroupementCouleur(int nombreRegroupementsAttendu, int tailleRegroupementAttendu, Main main) {
+		Map<Couleur, Integer> regroupement = regrouperCouleur(main);
+		Collection<Integer> taillesRegroupements = regroupement.values();
+		int nombreRegrouepementsTrouves = compterNombreRegroupement(taillesRegroupements, tailleRegroupementAttendu);
+		return nombreRegrouepementsTrouves == nombreRegroupementsAttendu;
+	}
+
+	protected boolean hasRegroupementValeur(int nombreRegroupementsAttendu, int tailleRegroupementAttendu, Main main) {
+		Map<Valeur, Integer> regroupement = regrouperValeur(main);
+		Collection<Integer> taillesRegroupements = regroupement.values();
+		int nombreRegrouepementsTrouves = compterNombreRegroupement(taillesRegroupements, tailleRegroupementAttendu);
+		return nombreRegrouepementsTrouves == nombreRegroupementsAttendu;
 	}
 
 }

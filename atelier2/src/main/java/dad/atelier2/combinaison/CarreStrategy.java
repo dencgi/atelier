@@ -1,19 +1,16 @@
 package dad.atelier2.combinaison;
 
-import java.util.Collection;
-import java.util.Map;
-
-import dad.atelier2.carte.Valeur;
 import dad.atelier2.joueur.Main;
 
 public class CarreStrategy extends AbstractStrategy implements VerificationStrategy {
 
+	private static final int NOMBRE_CARRE = 1;
+	private static final int NOMBRE_CARTE_UNIQUE = 1;
+
 	@Override
 	public boolean isOK(Main main) {
-		Map<Valeur, Integer> analyse = analyserValeur(main);
-		Collection<Integer> nombreValeur = analyse.values();
-		// Il y a une carte seule et un carre.
-		return (compter(nombreValeur, 1) == 1 && compter(nombreValeur, 4) == 1);
+		// Il y a une carte unique et un carre.
+		return (hasRegroupementValeur(NOMBRE_CARTE_UNIQUE, TAILLE_CARTE_UNIQUE, main) && hasRegroupementValeur(NOMBRE_CARRE, TAILLE_CARRE, main));
 	}
 
 }
