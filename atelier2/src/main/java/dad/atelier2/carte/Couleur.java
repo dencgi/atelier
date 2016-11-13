@@ -2,14 +2,14 @@ package dad.atelier2.carte;
 
 public enum Couleur {
 
-	PIQUE("pique"), COEUR("coeur"), CARREAU("carreau"), TREFLE("trefle");
-	
+	TREFLE("trefle"), CARREAU("carreau"), COEUR("coeur"), PIQUE("pique");
+
 	private String nom;
-	
+
 	private Couleur(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public String toString() {
 		return nom;
 	}

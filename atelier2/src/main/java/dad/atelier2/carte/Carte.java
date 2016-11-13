@@ -19,8 +19,30 @@ final public class Carte implements Comparable<Carte> {
 		return valeur;
 	}
 
+	@Override
 	public String toString() {
 		return valeur.toString() + "-" + couleur.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((couleur == null) ? 0 : couleur.hashCode());
+		result = prime * result + ((valeur == null) ? 0 : valeur.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carte other = (Carte) obj;
+		return (couleur == other.couleur && valeur == other.valeur);
 	}
 
 	@Override
