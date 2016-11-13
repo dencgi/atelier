@@ -1,7 +1,6 @@
 package dad.atelier2.joueur;
 
 import dad.atelier2.carte.Carte;
-import dad.atelier2.exception.MainPleineException;
 
 public class Joueur {
 
@@ -13,12 +12,16 @@ public class Joueur {
 		main = new Main();
 	}
 
-	public void recevoirCarte(Carte carte) throws MainPleineException {
+	public void recevoirCarte(Carte carte) {
 		main.add(carte);
 	}
 
 	public Main montrerMain() {
 		return new Main(main);
+	}
+
+	public void jeterMain() {
+		main = new Main();
 	}
 
 	@Override

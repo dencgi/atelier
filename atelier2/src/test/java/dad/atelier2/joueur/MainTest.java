@@ -11,7 +11,7 @@ import dad.atelier2.exception.MainPleineException;
 public class MainTest {
 
 	@Test
-	public void testTriMain() throws MainPleineException {
+	public void testTriMain() {
 		Main main = new Main();
 		while (!main.isPleine()) {
 			main.add(FabriqueCarte.getCarte());
@@ -44,15 +44,24 @@ public class MainTest {
 	}
 
 	@Test
-	public void testMainPleine() throws MainPleineException {
+	public void testMainPleine() {
 		Main main = new Main();
+		int tailleMain = 0;
 		try {
 			while (true) {
 				main.add(FabriqueCarte.getCarte());
+				++tailleMain;
 			}
 		} catch (MainPleineException e) {
 			assertTrue("La main est pleine.", main.isPleine());
 		}
+		assertEquals("La main contient 5 cartes.", 5, tailleMain);
+	}
+
+	@Test
+	public void testMainVide() {
+		Main main = new Main();
+		assertTrue("La main est vide.", main.isVide());
 	}
 
 }

@@ -10,14 +10,14 @@ import dad.atelier2.exception.MainPleineException;
 
 public class Main implements Iterable<Carte> {
 
+	private static final int TAILLE_VIDE = 0;
 	private static final int TAILLE_MAX = 5;
 
 	private List<Carte> main = new ArrayList<>();
-	
+
 	public Main() {
-		
 	}
-	
+
 	public Main(Main other) {
 		for (Carte carte : other) {
 			add(carte);
@@ -30,9 +30,13 @@ public class Main implements Iterable<Carte> {
 		}
 		main.add(carte);
 	}
-	
+
 	public boolean isPleine() {
 		return main.size() == TAILLE_MAX;
+	}
+
+	public boolean isVide() {
+		return main.size() == TAILLE_VIDE;
 	}
 
 	public void trier() {

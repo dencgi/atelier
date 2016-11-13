@@ -33,7 +33,7 @@ import dad.atelier2.joueur.Main;
 public class CombinaisonTest {
 
 	@Test
-	public void testQuinteFlush() throws MainPleineException {
+	public void testQuinteFlush() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.NEUF));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DIX));
@@ -44,7 +44,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testCarre() throws MainPleineException {
+	public void testCarre() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.COEUR, Valeur.DEUX));
 		main.add(new Carte(Couleur.TREFLE, Valeur.AS));
@@ -55,7 +55,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testFull() throws MainPleineException {
+	public void testFull() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.PIQUE, Valeur.DEUX));
 		main.add(new Carte(Couleur.CARREAU, Valeur.AS));
@@ -66,7 +66,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testCouleur() throws MainPleineException {
+	public void testCouleur() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
 		main.add(new Carte(Couleur.TREFLE, Valeur.AS));
@@ -77,7 +77,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testSuite() throws MainPleineException {
+	public void testSuite() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.COEUR, Valeur.DAME));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DIX));
@@ -88,7 +88,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testBrelan() throws MainPleineException {
+	public void testBrelan() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.VALET));
 		main.add(new Carte(Couleur.PIQUE, Valeur.VALET));
@@ -99,7 +99,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testDoublePaire() throws MainPleineException {
+	public void testDoublePaire() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
 		main.add(new Carte(Couleur.COEUR, Valeur.DEUX));
@@ -110,7 +110,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testPaire() throws MainPleineException {
+	public void testPaire() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
 		main.add(new Carte(Couleur.COEUR, Valeur.DEUX));
@@ -121,7 +121,7 @@ public class CombinaisonTest {
 	}
 
 	@Test
-	public void testCarte() throws MainPleineException {
+	public void testCarte() {
 		Main main = new Main();
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
 		main.add(new Carte(Couleur.COEUR, Valeur.AS));
