@@ -20,11 +20,16 @@ public class Main implements Iterable<Carte> {
 		}
 		main.add(carte);
 	}
+	
+	public boolean isMainPleine() {
+		return main.size() == TAILLE_MAX;
+	}
 
 	public void trier() {
 		Collections.sort(main);
 	}
 
+	@Override
 	public String toString() {
 		return main.toString();
 	}

@@ -34,6 +34,7 @@ public class Paquet {
 		cartes.add(carte);
 	}
 
+	@Override
 	public String toString() {
 		return cartes.toString();
 	}

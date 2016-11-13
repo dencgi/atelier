@@ -10,6 +10,7 @@ public enum Couleur {
 		this.nom = nom;
 	}
 
+	@Override
 	public String toString() {
 		return nom;
 	}

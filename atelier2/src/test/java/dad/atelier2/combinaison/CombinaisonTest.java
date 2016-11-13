@@ -42,7 +42,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
 		assertEquals("Problème lors de la détection de la quinte flush !", "QUINTE_FLUSH", Combinaison.getCombinaison(main));
 	}
-	
+
 	@Test
 	public void testCarre() throws MainPleineException {
 		Main main = new Main();
@@ -86,7 +86,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.PIQUE, Valeur.HUIT));
 		assertEquals("Problème lors de la détection de la suite !", "SUITE", Combinaison.getCombinaison(main));
 	}
-	
+
 	@Test
 	public void testBrelan() throws MainPleineException {
 		Main main = new Main();
@@ -97,7 +97,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
 		assertEquals("Problème lors de la détection du brelan !", "BRELAN", Combinaison.getCombinaison(main));
 	}
-	
+
 	@Test
 	public void testDoublePaire() throws MainPleineException {
 		Main main = new Main();
@@ -108,7 +108,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.CARREAU, Valeur.ROI));
 		assertEquals("Problème lors de la détection de la double paire !", "DOUBLE_PAIRE", Combinaison.getCombinaison(main));
 	}
-	
+
 	@Test
 	public void testPaire() throws MainPleineException {
 		Main main = new Main();
@@ -129,19 +129,6 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.PIQUE, Valeur.CINQ));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
 		assertEquals("Problème lors de la détection de la carte !", "CARTE", Combinaison.getCombinaison(main));
-	}
-
-
-
-	@Test(expected = MainPleineException.class)
-	public void testMainPleine() throws MainPleineException {
-		Main main = new Main();
-		main.add(new Carte(Couleur.COEUR, Valeur.DAME));
-		main.add(new Carte(Couleur.TREFLE, Valeur.DIX));
-		main.add(new Carte(Couleur.TREFLE, Valeur.VALET));
-		main.add(new Carte(Couleur.TREFLE, Valeur.NEUF));
-		main.add(new Carte(Couleur.PIQUE, Valeur.HUIT));
-		main.add(new Carte(Couleur.CARREAU, Valeur.NEUF));
 	}
 
 }
