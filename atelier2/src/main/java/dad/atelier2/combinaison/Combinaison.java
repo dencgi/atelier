@@ -1,8 +1,6 @@
 package dad.atelier2.combinaison;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import org.apache.commons.lang3.ArrayUtils;
 
 import dad.atelier2.joueur.Main;
 
@@ -27,17 +25,20 @@ public enum Combinaison {
 		return strategie.isOK(main);
 	}
 
-	public static String getCombinaison(Main main) {
+	public static Combinaison getCombinaison(Main main) {
 		// Liste des combinaisons dans l'ordre inverse, de la plus forte à la plus faible.
-		List<Combinaison> combinaisons=  Arrays.asList(Combinaison.values());
-		Collections.reverse(combinaisons);
-		
-		for (Combinaison comb : combinaisons) {
+		for (Combinaison comb : valuesDescendingSort()) {
 			if (comb.verifier(main)) {
-				return comb.toString();
+				return comb;
 			}
 		}
-		return ""; // Ne devrait jamais se produire.
+		return Combinaison.CARTE; // Ne devrait jamais se produire.
+	}
+
+	public static Combinaison[] valuesDescendingSort() {
+		Combinaison[] combs = Combinaison.values();
+		ArrayUtils.reverse(combs);
+		return combs;
 	}
 
 }

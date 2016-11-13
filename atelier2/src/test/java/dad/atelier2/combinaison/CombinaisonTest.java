@@ -39,7 +39,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.ROI));
 		main.add(new Carte(Couleur.TREFLE, Valeur.VALET));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
-		assertEquals("Problème lors de la détection de la quinte flush !", "QUINTE_FLUSH", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la quinte flush !", Combinaison.QUINTE_FLUSH, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.CARREAU, Valeur.DEUX));
 		main.add(new Carte(Couleur.PIQUE, Valeur.DEUX));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
-		assertEquals("Problème lors de la détection du carré !", "CARRE", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection du carré !", Combinaison.CARRE, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.AS));
 		main.add(new Carte(Couleur.COEUR, Valeur.AS));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DEUX));
-		assertEquals("Problème lors de la détection du full !", "FULL", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection du full !", Combinaison.FULL, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.ROI));
 		main.add(new Carte(Couleur.TREFLE, Valeur.CINQ));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
-		assertEquals("Problème lors de la détection de la couleur !", "COULEUR", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la couleur !", Combinaison.COULEUR, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.VALET));
 		main.add(new Carte(Couleur.TREFLE, Valeur.NEUF));
 		main.add(new Carte(Couleur.PIQUE, Valeur.HUIT));
-		assertEquals("Problème lors de la détection de la suite !", "SUITE", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la suite !", Combinaison.SUITE, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.COEUR, Valeur.VALET));
 		main.add(new Carte(Couleur.TREFLE, Valeur.CINQ));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
-		assertEquals("Problème lors de la détection du brelan !", "BRELAN", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection du brelan !", Combinaison.BRELAN, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -105,7 +105,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.PIQUE, Valeur.ROI));
 		main.add(new Carte(Couleur.TREFLE, Valeur.CINQ));
 		main.add(new Carte(Couleur.CARREAU, Valeur.ROI));
-		assertEquals("Problème lors de la détection de la double paire !", "DOUBLE_PAIRE", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la double paire !", Combinaison.DOUBLE_PAIRE, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.PIQUE, Valeur.ROI));
 		main.add(new Carte(Couleur.TREFLE, Valeur.CINQ));
 		main.add(new Carte(Couleur.CARREAU, Valeur.VALET));
-		assertEquals("Problème lors de la détection de la paire !", "PAIRE", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la paire !", Combinaison.PAIRE, Combinaison.getCombinaison(main));
 	}
 
 	@Test
@@ -127,9 +127,9 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.ROI));
 		main.add(new Carte(Couleur.PIQUE, Valeur.CINQ));
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
-		assertEquals("Problème lors de la détection de la carte !", "CARTE", Combinaison.getCombinaison(main));
+		assertEquals("Problème lors de la détection de la carte !", Combinaison.CARTE, Combinaison.getCombinaison(main));
 	}
-	
+
 	@Test
 	public void testOrdre() {
 		assertTrue("Le brelan est supérieur à une carte seule.", Combinaison.BRELAN.compareTo(Combinaison.CARTE) > 0);
@@ -137,7 +137,15 @@ public class CombinaisonTest {
 		assertTrue("Le full est égal au full.", Combinaison.FULL.compareTo(Combinaison.FULL) == 0);
 		assertTrue("Le full est égal au full.", Combinaison.FULL.equals(Combinaison.FULL));
 	}
-	
-	
 
+	@Test
+	public void testValuesSort() {
+		Combinaison combinaisonPrecedente = null;
+		for (Combinaison comb : Combinaison.valuesDescendingSort()) {
+			if (combinaisonPrecedente != null) {
+				assertTrue("Chaque combinaison précédente est plus grande que la suivante.", combinaisonPrecedente.compareTo(comb) > 0);
+			}
+			combinaisonPrecedente = comb;
+		}
+	}
 }
