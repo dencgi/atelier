@@ -5,8 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import dad.atelier2.carte.Carte;
-import dad.atelier2.carte.Couleur;
-import dad.atelier2.carte.Valeur;
+import dad.atelier2.carte.FabriqueCarte;
 import dad.atelier2.exception.MainPleineException;
 
 public class MainTest {
@@ -15,7 +14,7 @@ public class MainTest {
 	public void testTriMain() throws MainPleineException {
 		Main main = new Main();
 		while (!main.isPleine()) {
-			main.add(new Carte(Couleur.tirerAuHasard(), Valeur.tirerAuHasard()));
+			main.add(FabriqueCarte.getCarte());
 		}
 
 		// Vérification que les cartes sont dans le désordre.
@@ -49,7 +48,7 @@ public class MainTest {
 		Main main = new Main();
 		try {
 			while (true) {
-				main.add(new Carte(Couleur.tirerAuHasard(), Valeur.tirerAuHasard()));
+				main.add(FabriqueCarte.getCarte());
 			}
 		} catch (MainPleineException e) {
 			assertTrue("La main est pleine.", main.isPleine());

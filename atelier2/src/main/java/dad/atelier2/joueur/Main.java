@@ -13,8 +13,18 @@ public class Main implements Iterable<Carte> {
 	private static final int TAILLE_MAX = 5;
 
 	private List<Carte> main = new ArrayList<>();
+	
+	public Main() {
+		
+	}
+	
+	public Main(Main other) {
+		for (Carte carte : other) {
+			add(carte);
+		}
+	}
 
-	public void add(Carte carte) throws MainPleineException {
+	public void add(Carte carte) {
 		if (main.size() >= TAILLE_MAX) {
 			throw new MainPleineException();
 		}

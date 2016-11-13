@@ -1,11 +1,11 @@
-package dad.atelier2.carte;
+package dad.atelier2.joueur;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CarteTest.class, FabriqueCarteTest.class })
-public class CarteAllTests {
+@SuiteClasses({ JoueurTest.class, MainTest.class })
+public class JoueurAllTests {
 
 }

@@ -17,10 +17,10 @@ public class Joueur {
 		main.add(carte);
 	}
 
-	public void montrerMain() {
-		System.out.println(main.toString());
+	public Main montrerMain() {
+		return new Main(main);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Joueur [nom=" + nom + ",\n main=" + main + "]";
@@ -32,10 +32,6 @@ public class Joueur {
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public Main getMain() {
-		return main;
 	}
 
 }

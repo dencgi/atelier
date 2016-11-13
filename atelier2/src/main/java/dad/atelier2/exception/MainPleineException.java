@@ -1,6 +1,6 @@
 package dad.atelier2.exception;
 
-public class MainPleineException extends Exception {
+public class MainPleineException extends RuntimeException {
 
 	private static final long serialVersionUID = -541682877613493447L;
 
