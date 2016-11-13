@@ -1,6 +1,11 @@
 package dad.atelier3.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.annotation.Resource;
+import javax.naming.OperationNotSupportedException;
+
 import org.springframework.stereotype.Service;
 
 import dad.atelier3.dao.RepoCandidat;
@@ -11,35 +16,55 @@ import dad.atelier3.model.Individu;
 @Service
 public class ServiceIndividu {
 
-	@Autowired
-	private RepoIndividu repoIndividu;
-
-	@Autowired
+	@Resource
 	private RepoInterimaire repoInterimaire;
 
-	@Autowired
+	@Resource
 	private RepoCandidat repoCandidat;
 
-	public Individu find(String idRef) {
-		Individu ind = repoIndividu.find(idRef);
-		if (ind.getType() == Individu.Type.INTERIMAIRE) {
-			ind = repoInterimaire.find(ind);
-		} else {
-			ind = repoCandidat.find(ind);
+	private static final String GROUPE_REPO = "repo";
+	private static final String GROUPE_ATTRIBUT = "att";
+	private static final String GROUPE_VALEUR = "valeur";
+	private static final Pattern PATTERN_COMMANDE = Pattern.compile("^(?<" + GROUPE_REPO + ">int|can)-(?<" + GROUPE_ATTRIBUT + ">\\w+)-(?<" + GROUPE_VALEUR + ">\\w+)$");
+
+	private RepoIndividu getRepo(String commande) throws OperationNotSupportedException {
+		Matcher m = PATTERN_COMMANDE.matcher(commande);
+		if (!m.matches()) {
+			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
 		}
-		return ind;
+		return "int".equals(m.group(GROUPE_REPO)) ? repoInterimaire : repoCandidat;
 	}
 
-	public void setRepoIndividu(RepoIndividu repoIndividu) {
-		this.repoIndividu = repoIndividu;
+	private String getNomAttribut(String commande) throws OperationNotSupportedException {
+		Matcher m = PATTERN_COMMANDE.matcher(commande);
+		if (!m.matches()) {
+			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
+		}
+		return m.group(GROUPE_ATTRIBUT);
 	}
 
-	public void setRepoInterimaire(RepoInterimaire repoInterimaire) {
-		this.repoInterimaire = repoInterimaire;
+	private String getValeur(String commande) throws OperationNotSupportedException {
+		Matcher m = PATTERN_COMMANDE.matcher(commande);
+		if (!m.matches()) {
+			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
+		}
+		return m.group(GROUPE_VALEUR);
 	}
 
-	public void setRepoCandidat(RepoCandidat repoCandidat) {
-		this.repoCandidat = repoCandidat;
+	public Individu remplacer(String refIndividu, String commande) throws OperationNotSupportedException {
+		Individu individu = getRepo(commande).find(refIndividu);
+		if ("nom".equals(getNomAttribut(commande))) {
+			individu.setNom(getValeur(commande));
+		}
+		return individu;
+	}
+
+	public Individu ajouter(String refIndividu, String commande) throws OperationNotSupportedException {
+		Individu individu = getRepo(commande).find(refIndividu);
+		if ("nom".equals(getNomAttribut(commande))) {
+			individu.setNom(individu.getNom() + getValeur(commande));
+		}
+		return individu;
 	}
 
 }

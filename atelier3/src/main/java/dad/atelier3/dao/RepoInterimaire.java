@@ -1,21 +1,22 @@
 package dad.atelier3.dao;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Repository;
 
 import dad.atelier3.model.Individu;
 
 @Repository
-public class RepoInterimaire {
+public class RepoInterimaire implements RepoIndividu {
 
-	public Individu find(Individu interimaireRecherche) {
-		String idInterimaire = interimaireRecherche.getIdInterimaire();
-		// On fait plein de choses avec l'idInterimaire, comme recherché en base.
-		System.out.println("On fait plein de choses avec l'idInterimaire : " + idInterimaire);
+	@Override
+	public Individu find(String refIndividu) {
+		Individu interimaire = new Individu();
+		interimaire.setIdRef(refIndividu);
+		interimaire.setNom(RandomStringUtils.randomAlphabetic(8));
+		interimaire.setType(Individu.Type.INTERIMAIRE);
+		interimaire.setIdInterimaire(RandomStringUtils.randomAlphanumeric(15));
 
-		Individu interimaireTrouve = new Individu(interimaireRecherche);
-		interimaireTrouve.setNom("Interim");
-		interimaireTrouve.setType(Individu.Type.INTERIMAIRE);
-		return interimaireTrouve;
+		return interimaire;
 	}
 
 }

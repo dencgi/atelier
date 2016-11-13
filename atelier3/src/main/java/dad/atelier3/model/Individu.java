@@ -13,7 +13,7 @@ public class Individu {
 	}
 
 	public Individu() {
-
+		super();
 	}
 
 	public Individu(Individu ind) {

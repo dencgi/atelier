@@ -15,6 +15,6 @@
 
 	<context:property-placeholder location="classpath:messages.properties" />
 
-	<context:spring-configured />
+	<!-- <context:spring-configured /> -->
 
 </beans>
