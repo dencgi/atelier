@@ -31,4 +31,10 @@ public enum Valeur {
 		}
 		return values()[this.ordinal() - 1];
 	}
+
+	public static Valeur tirerAuHasard() {
+		Valeur[] valeurs = Valeur.values();
+		int hasard = (int) (Math.random() * valeurs.length);
+		return valeurs[hasard];
+	}
 }

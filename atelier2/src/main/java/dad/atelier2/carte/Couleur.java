@@ -14,4 +14,10 @@ public enum Couleur {
 	public String toString() {
 		return nom;
 	}
+
+	public static Couleur tirerAuHasard() {
+		Couleur[] couleurs = Couleur.values();
+		int hasard = (int) (Math.random() * couleurs.length);
+		return couleurs[hasard];
+	}
 }
