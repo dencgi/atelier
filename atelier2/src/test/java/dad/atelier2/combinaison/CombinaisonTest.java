@@ -1,6 +1,6 @@
 package dad.atelier2.combinaison;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -8,7 +8,6 @@ import dad.atelier2.carte.Carte;
 import dad.atelier2.carte.Couleur;
 import dad.atelier2.carte.Valeur;
 import dad.atelier2.combinaison.Combinaison;
-import dad.atelier2.exception.MainPleineException;
 import dad.atelier2.joueur.Main;
 
 /*
@@ -130,5 +129,15 @@ public class CombinaisonTest {
 		main.add(new Carte(Couleur.TREFLE, Valeur.DAME));
 		assertEquals("Problème lors de la détection de la carte !", "CARTE", Combinaison.getCombinaison(main));
 	}
+	
+	@Test
+	public void testOrdre() {
+		assertTrue("Le brelan est supérieur à une carte seule.", Combinaison.BRELAN.compareTo(Combinaison.CARTE) > 0);
+		assertTrue("Le carre est inférieur à une quinte flush.", Combinaison.CARRE.compareTo(Combinaison.QUINTE_FLUSH) < 0);
+		assertTrue("Le full est égal au full.", Combinaison.FULL.compareTo(Combinaison.FULL) == 0);
+		assertTrue("Le full est égal au full.", Combinaison.FULL.equals(Combinaison.FULL));
+	}
+	
+	
 
 }

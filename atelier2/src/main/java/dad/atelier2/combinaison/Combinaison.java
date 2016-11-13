@@ -1,17 +1,21 @@
 package dad.atelier2.combinaison;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import dad.atelier2.joueur.Main;
 
 public enum Combinaison {
-	QUINTE_FLUSH(new QuinteFlushStrategy()),
-	CARRE(new CarreStrategy()),
-	FULL(new FullStrategy()),
-	COULEUR(new CouleurStrategy()),
-	SUITE(new SuiteStrategy()),
-	BRELAN(new BrelanStrategy()),
-	DOUBLE_PAIRE(new DoublePaireStrategy()),
+	CARTE(new CarteStrategy()),
 	PAIRE(new PaireStrategy()),
-	CARTE(new CarteStrategy());
+	DOUBLE_PAIRE(new DoublePaireStrategy()),
+	BRELAN(new BrelanStrategy()),
+	SUITE(new SuiteStrategy()),
+	COULEUR(new CouleurStrategy()),
+	FULL(new FullStrategy()),
+	CARRE(new CarreStrategy()),
+	QUINTE_FLUSH(new QuinteFlushStrategy());
 
 	private VerificationStrategy strategie;
 
@@ -24,7 +28,11 @@ public enum Combinaison {
 	}
 
 	public static String getCombinaison(Main main) {
-		for (Combinaison comb : Combinaison.values()) {
+		// Liste des combinaisons dans l'ordre inverse, de la plus forte à la plus faible.
+		List<Combinaison> combinaisons=  Arrays.asList(Combinaison.values());
+		Collections.reverse(combinaisons);
+		
+		for (Combinaison comb : combinaisons) {
 			if (comb.verifier(main)) {
 				return comb.toString();
 			}
