@@ -6,8 +6,12 @@ import java.util.List;
 import dad.atelier2.carte.Carte;
 import dad.atelier2.carte.Couleur;
 import dad.atelier2.carte.Valeur;
+import dad.atelier2.exception.PaquetVideException;
 
 public class Paquet {
+
+	private static final int TAILLE_MAX = Valeur.values().length * Couleur.values().length;
+	private static final int TAILLE_VIDE = 0;
 
 	private List<Carte> cartes;
 
@@ -26,12 +30,19 @@ public class Paquet {
 	}
 
 	public Carte tirerCarte() {
+		if (isVide()) {
+			throw new PaquetVideException();
+		}
 		int i = (int) (Math.random() * cartes.size());
 		return cartes.remove(i);
 	}
 
-	public void ajouterCarte(Carte carte) {
-		cartes.add(carte);
+	public boolean isPlein() {
+		return cartes.size() == TAILLE_MAX;
+	}
+
+	public boolean isVide() {
+		return cartes.size() == TAILLE_VIDE;
 	}
 
 	@Override
