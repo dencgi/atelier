@@ -7,6 +7,7 @@ public class Individu {
 	private String idInterimaire;
 	private String idCandidat;
 	private String nom;
+	private String prenom;
 
 	public enum Type {
 		INTERIMAIRE, CANDIDAT;
@@ -22,6 +23,7 @@ public class Individu {
 		this.idInterimaire = ind.idInterimaire;
 		this.idCandidat = ind.idCandidat;
 		this.nom = ind.nom;
+		this.prenom = ind.prenom;
 	}
 
 	public String getIdRef() {
@@ -64,9 +66,17 @@ public class Individu {
 		this.nom = nom;
 	}
 
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
 	@Override
 	public String toString() {
-		return "Individu [idRef=" + idRef + ", type=" + type + ", idInterimaire=" + idInterimaire + ", idCandidat=" + idCandidat + ", nom=" + nom + "]";
+		return "Individu [idRef=" + idRef + ", type=" + type + ", idInterimaire=" + idInterimaire + ", idCandidat=" + idCandidat + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
 
 }

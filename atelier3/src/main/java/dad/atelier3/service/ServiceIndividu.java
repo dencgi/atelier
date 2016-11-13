@@ -57,6 +57,9 @@ public class ServiceIndividu {
 		if ("nom".equals(getNomAttribut(commande))) {
 			individu.setNom(getValeur(commande));
 		}
+		if ("prenom".equals(getNomAttribut(commande))) {
+			individu.setPrenom(getValeur(commande));
+		}
 		return individu;
 	}
 
@@ -64,6 +67,9 @@ public class ServiceIndividu {
 		Individu individu = getRepo(commande).find(refIndividu);
 		if ("nom".equals(getNomAttribut(commande))) {
 			individu.setNom(individu.getNom() + getValeur(commande));
+		}
+		if ("prenom".equals(getNomAttribut(commande))) {
+			individu.setPrenom(individu.getPrenom() + getValeur(commande));
 		}
 		return individu;
 	}

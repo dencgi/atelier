@@ -3,7 +3,6 @@ package dad.atelier3;
 import javax.annotation.Resource;
 import javax.naming.OperationNotSupportedException;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -25,20 +24,23 @@ public class Vue {
 	private Individu individu;
 
 	public static void main(String[] args) throws OperationNotSupportedException {
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
 		Vue vue = context.getBean(Vue.class);
 		vue.start();
 		vue.traitement("int-nom-toto");
+		vue.traitement("int-prenom-titi");
 		vue.done();
-
+		
 		System.out.println(vue.individu);
+		
+		context.close();
 	}
 
-	private void start() {
+	public void start() {
 		session = sessionManager.getCurrentSession();
 	}
 
-	private void traitement(String commande) throws OperationNotSupportedException {
+	public void traitement(String commande) throws OperationNotSupportedException {
 		if (session.isInPopin()) {
 			individu = serviceIndividu.ajouter(session.getRefIndividu(), commande);
 		} else {
@@ -46,7 +48,16 @@ public class Vue {
 		}
 	}
 
-	private void done() {
+	public void done() {
 		// Rien à faire.
 	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public Individu getIndividu() {
+		return individu;
+	}
+
 }
