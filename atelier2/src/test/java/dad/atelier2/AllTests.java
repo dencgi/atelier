@@ -5,10 +5,10 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import dad.atelier2.carte.CarteTest;
-import dad.atelier2.main.MainTest;
+import dad.atelier2.combinaison.CombinaisonTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ MainTest.class, CarteTest.class })
+@SuiteClasses({ CombinaisonTest.class, CarteTest.class })
 public class AllTests {
 
 }

@@ -1,4 +1,4 @@
-package dad.atelier2.main;
+package dad.atelier2.combinaison;
 
 import static org.junit.Assert.assertEquals;
 
@@ -30,7 +30,7 @@ import dad.atelier2.joueur.Main;
  * - carte : aucune autre combinaison.
  * 
  */
-public class MainTest {
+public class CombinaisonTest {
 
 	@Test
 	public void testQuinteFlush() throws MainPleineException {
