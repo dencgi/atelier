@@ -26,7 +26,7 @@ import dad.atelier3.service.ServiceIndividu;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
-public class ServiceIndividuTest_2_MockSimple {
+public class ServiceIndividuTest_2 {
 
 	@Resource
 	@InjectMocks
