@@ -16,21 +16,22 @@ import dad.atelier3.model.Individu;
 @Service
 public class ServiceIndividu {
 
+	private static final String MESSAGE_ERREUR = "La commande ne ressemble à rien.";
+	private static final String GROUPE_REPO = "repo";
+	private static final String GROUPE_ATTRIBUT = "att";
+	private static final String GROUPE_VALEUR = "valeur";
+	private static final Pattern PATTERN_COMMANDE = Pattern.compile("^(?<" + GROUPE_REPO + ">int|can)-(?<" + GROUPE_ATTRIBUT + ">\\w+)-(?<" + GROUPE_VALEUR + ">\\w+)$");
+
 	@Resource
 	private RepoInterimaire repoInterimaire;
 
 	@Resource
 	private RepoCandidat repoCandidat;
 
-	private static final String GROUPE_REPO = "repo";
-	private static final String GROUPE_ATTRIBUT = "att";
-	private static final String GROUPE_VALEUR = "valeur";
-	private static final Pattern PATTERN_COMMANDE = Pattern.compile("^(?<" + GROUPE_REPO + ">int|can)-(?<" + GROUPE_ATTRIBUT + ">\\w+)-(?<" + GROUPE_VALEUR + ">\\w+)$");
-
 	private RepoIndividu getRepo(String commande) throws OperationNotSupportedException {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
-			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
+			throw new OperationNotSupportedException(MESSAGE_ERREUR);
 		}
 		return "int".equals(m.group(GROUPE_REPO)) ? repoInterimaire : repoCandidat;
 	}
@@ -38,7 +39,7 @@ public class ServiceIndividu {
 	private String getNomAttribut(String commande) throws OperationNotSupportedException {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
-			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
+			throw new OperationNotSupportedException(MESSAGE_ERREUR);
 		}
 		return m.group(GROUPE_ATTRIBUT);
 	}
@@ -46,7 +47,7 @@ public class ServiceIndividu {
 	private String getValeur(String commande) throws OperationNotSupportedException {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
-			throw new OperationNotSupportedException("La commande ne ressemble à rien.");
+			throw new OperationNotSupportedException(MESSAGE_ERREUR);
 		}
 		return m.group(GROUPE_VALEUR);
 	}
