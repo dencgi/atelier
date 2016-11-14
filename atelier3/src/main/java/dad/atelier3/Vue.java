@@ -3,6 +3,7 @@ package dad.atelier3;
 import javax.annotation.Resource;
 import javax.naming.OperationNotSupportedException;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import dad.atelier3.service.ServiceIndividu;
 import dad.atelier3.service.SessionManager;
 
 @Component
+@Scope("prototype")
 public class Vue {
 
 	@Resource
