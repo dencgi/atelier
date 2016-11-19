@@ -1,0 +1,20 @@
+@startuml
+
+actor Vue
+participant SessionManager
+participant ServiceIndividu
+database RepoIndividu
+
+Vue -> SessionManager : getCurrentSession()
+Vue <-- SessionManager : Session(pid, parent, refIndividu)
+
+Vue -> ServiceIndividu : ajouter/modifier(refIndividu, commande)
+
+ServiceIndividu -> ServiceIndividu : getRepo()
+ServiceIndividu -> RepoIndividu : find(refIndividu)
+ServiceIndividu <-- RepoIndividu : Individu
+ServiceIndividu -> ServiceIndividu : opération d'ajout/modification
+
+Vue <-- ServiceIndividu : Individu
+
+@enduml
