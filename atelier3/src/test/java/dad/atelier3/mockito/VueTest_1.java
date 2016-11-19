@@ -22,7 +22,7 @@ import dad.atelier3.service.ServiceIndividu;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
-public class ServiceIndividuTest_1 {
+public class VueTest_1 {
 
 	@Resource
 	@InjectMocks

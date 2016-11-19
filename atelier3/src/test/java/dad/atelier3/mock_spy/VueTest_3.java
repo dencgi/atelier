@@ -22,7 +22,7 @@ import dad.atelier3.service.ServiceIndividu;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
-public class ServiceIndividuTest_3 {
+public class VueTest_3 {
 
 	@Autowired
 	private Vue vue;

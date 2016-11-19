@@ -16,13 +16,12 @@ import org.springframework.test.util.ReflectionTestUtils;
 import dad.atelier3.Vue;
 import dad.atelier3.service.ServiceIndividu;
 
-
 /*
- * Mock vide.
+ * Spy vide.
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
-public class ServiceIndividuTest_1 {
+public class VueTest_2 {
 
 	@Autowired
 	private Vue vue;
@@ -31,9 +30,9 @@ public class ServiceIndividuTest_1 {
 	private ApplicationContext context;
 	
 	@Before
-	public void injectMock() {
-		ServiceIndividu mock = context.getBean(ServiceIndividuMock.class);
-		ReflectionTestUtils.setField(vue, "serviceIndividu", mock);
+	public void injectSpy() {
+		ServiceIndividu spy = context.getBean(ServiceIndividuSpy.class);
+		ReflectionTestUtils.setField(vue, "serviceIndividu", spy);
 	}
 
 	@Test
@@ -43,7 +42,7 @@ public class ServiceIndividuTest_1 {
 		vue.traitement("int-prenom-titi");
 		vue.done();
 
-		assertNull("Il n'y a pas d'individu car le mock ne fait rien", vue.getIndividu());
+		assertNotNull("Il y a un individu car le spy, par défaut, fait pareil que l'objet réel", vue.getIndividu());
 	}
 
 }
