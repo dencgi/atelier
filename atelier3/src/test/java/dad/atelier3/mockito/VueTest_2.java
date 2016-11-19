@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -15,6 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -88,7 +90,7 @@ public class VueTest_2 {
 	}
 
 	@Test
-	public void tropAppelTest() throws OperationNotSupportedException {
+	public void appelSuccessifTest() throws OperationNotSupportedException {
 		doReturn(monIndividu1, monIndividu2).when(serviceIndividu).remplacer(anyString(), eq("ma-troisieme-commande"));
 
 		// when(serviceIndividu.remplacer(anyString(), eq("ma-troisieme-commande"))).thenReturn(monIndividu1, monIndividu2);
@@ -109,6 +111,30 @@ public class VueTest_2 {
 		assertEquals("Le mock retourne l'individu1", monIndividu1, premierAppel);
 		assertEquals("Le mock retourne l'individu2", monIndividu2, secondAppel);
 		verify(serviceIndividu, times(2)).remplacer(any(), any());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void exceptionTest() throws OperationNotSupportedException {
+		doThrow(new IllegalArgumentException()).when(serviceIndividu).remplacer(anyString(), eq("ma-troisieme-commande"));
+
+		vue.start();
+		vue.traitement("ma-troisieme-commande");
+		vue.traitement("ma-troisieme-commande");
+		vue.done();
+
+		verify(serviceIndividu, times(2)).remplacer(any(), any());
+	}
+
+	@Test
+	public void captureTest() throws OperationNotSupportedException {
+		ArgumentCaptor<String> refIndividuCaptor = ArgumentCaptor.forClass(String.class);
+		doReturn(monIndividu1).when(serviceIndividu).remplacer(refIndividuCaptor.capture(), anyString());
+
+		vue.start();
+		vue.traitement("encore-une-commande");
+		vue.done();
+
+		System.out.println(refIndividuCaptor.getValue());
 	}
 
 }
