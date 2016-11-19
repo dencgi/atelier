@@ -76,15 +76,14 @@ public class VueTest_2 {
 		doReturn(monIndividu2).when(serviceIndividu).remplacer(anyString(), eq("ma-seconde-commande"));
 
 		vue.start();
-
 		vue.traitement("ma-premiere-commande");
-		assertEquals("Le mock retourne l'individu1", monIndividu1, vue.getIndividu());
-
+		Individu premierIndividu = vue.getIndividu();
 		vue.traitement("ma-seconde-commande");
-		assertEquals("Le mock retourne l'individu2", monIndividu2, vue.getIndividu());
-
+		Individu secondIndividu = vue.getIndividu();
 		vue.done();
 
+		assertEquals("Le mock retourne l'individu1", monIndividu1, premierIndividu);
+		assertEquals("Le mock retourne l'individu2", monIndividu2, secondIndividu);
 		verify(serviceIndividu, times(2)).remplacer(any(), any());
 	}
 
@@ -102,13 +101,13 @@ public class VueTest_2 {
 
 		vue.start();
 		vue.traitement("ma-troisieme-commande");
-		assertEquals("Le mock retourne l'individu1", monIndividu1, vue.getIndividu());
-
+		Individu premierAppel = vue.getIndividu();
 		vue.traitement("ma-troisieme-commande");
-		assertEquals("Le mock retourne l'individu2", monIndividu2, vue.getIndividu());
-
+		Individu secondAppel = vue.getIndividu();
 		vue.done();
 
+		assertEquals("Le mock retourne l'individu1", monIndividu1, premierAppel);
+		assertEquals("Le mock retourne l'individu2", monIndividu2, secondAppel);
 		verify(serviceIndividu, times(2)).remplacer(any(), any());
 	}
 
