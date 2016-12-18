@@ -4,13 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
-import javax.naming.OperationNotSupportedException;
 
 import org.springframework.stereotype.Service;
 
 import dad.atelier3.dao.RepoCandidat;
 import dad.atelier3.dao.RepoIndividu;
 import dad.atelier3.dao.RepoInterimaire;
+import dad.atelier3.exception.OperationNotSupportedException;
 import dad.atelier3.model.Individu;
 
 @Service
@@ -20,7 +20,8 @@ public class ServiceIndividu {
 	private static final String GROUPE_REPO = "repo";
 	private static final String GROUPE_ATTRIBUT = "att";
 	private static final String GROUPE_VALEUR = "valeur";
-	private static final Pattern PATTERN_COMMANDE = Pattern.compile("^(?<" + GROUPE_REPO + ">int|can)-(?<" + GROUPE_ATTRIBUT + ">\\w+)-(?<" + GROUPE_VALEUR + ">\\w+)$");
+	private static final Pattern PATTERN_COMMANDE = Pattern
+			.compile("^(?<" + GROUPE_REPO + ">int|can)-(?<" + GROUPE_ATTRIBUT + ">\\w+)-(?<" + GROUPE_VALEUR + ">\\w+)$");
 
 	@Resource
 	private RepoInterimaire repoInterimaire;
@@ -28,7 +29,7 @@ public class ServiceIndividu {
 	@Resource
 	private RepoCandidat repoCandidat;
 
-	private RepoIndividu getRepo(String commande) throws OperationNotSupportedException {
+	private RepoIndividu getRepo(String commande) {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
 			throw new OperationNotSupportedException(MESSAGE_ERREUR);
@@ -36,7 +37,7 @@ public class ServiceIndividu {
 		return "int".equals(m.group(GROUPE_REPO)) ? repoInterimaire : repoCandidat;
 	}
 
-	private String getNomAttribut(String commande) throws OperationNotSupportedException {
+	private String getNomAttribut(String commande) {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
 			throw new OperationNotSupportedException(MESSAGE_ERREUR);
@@ -44,7 +45,7 @@ public class ServiceIndividu {
 		return m.group(GROUPE_ATTRIBUT);
 	}
 
-	private String getValeur(String commande) throws OperationNotSupportedException {
+	private String getValeur(String commande) {
 		Matcher m = PATTERN_COMMANDE.matcher(commande);
 		if (!m.matches()) {
 			throw new OperationNotSupportedException(MESSAGE_ERREUR);
@@ -52,7 +53,7 @@ public class ServiceIndividu {
 		return m.group(GROUPE_VALEUR);
 	}
 
-	public Individu remplacer(String refIndividu, String commande) throws OperationNotSupportedException {
+	public Individu remplacer(String refIndividu, String commande) {
 		Individu individu = getRepo(commande).find(refIndividu);
 		// Dans le cas où aucun individu n'est trouvé.
 		if (individu == null) {
@@ -67,7 +68,7 @@ public class ServiceIndividu {
 		return individu;
 	}
 
-	public Individu ajouter(String refIndividu, String commande) throws OperationNotSupportedException {
+	public Individu ajouter(String refIndividu, String commande) {
 		Individu individu = getRepo(commande).find(refIndividu);
 		// Dans le cas où aucun individu n'est trouvé.
 		if (individu == null) {

@@ -1,7 +1,5 @@
 package dad.atelier3.mock_spy;
 
-import javax.naming.OperationNotSupportedException;
-
 import org.springframework.stereotype.Service;
 
 import dad.atelier3.model.Individu;
@@ -13,12 +11,12 @@ public class ServiceIndividuMock2 extends ServiceIndividu {
 	private Individu individu;
 
 	@Override
-	public Individu remplacer(String refIndividu, String commande) throws OperationNotSupportedException {
+	public Individu remplacer(String refIndividu, String commande) {
 		return individu;
 	}
 
 	@Override
-	public Individu ajouter(String refIndividu, String commande) throws OperationNotSupportedException {
+	public Individu ajouter(String refIndividu, String commande) {
 		return individu;
 	}
 

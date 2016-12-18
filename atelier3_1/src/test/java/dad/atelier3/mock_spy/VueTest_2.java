@@ -1,8 +1,6 @@
 package dad.atelier3.mock_spy;
 
-import static org.junit.Assert.*;
-
-import javax.naming.OperationNotSupportedException;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,10 +23,10 @@ public class VueTest_2 {
 
 	@Autowired
 	private Vue vue;
-	
+
 	@Autowired
 	private ApplicationContext context;
-	
+
 	@Before
 	public void injectSpy() {
 		ServiceIndividu spy = context.getBean(ServiceIndividuSpy.class);
@@ -36,7 +34,7 @@ public class VueTest_2 {
 	}
 
 	@Test
-	public void traitementReplaceTest() throws OperationNotSupportedException {
+	public void traitementReplaceTest() {
 		vue.start();
 		vue.traitement("int-nom-toto");
 		vue.traitement("int-prenom-titi");

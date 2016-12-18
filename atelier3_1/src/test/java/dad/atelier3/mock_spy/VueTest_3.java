@@ -1,8 +1,6 @@
 package dad.atelier3.mock_spy;
 
-import static org.junit.Assert.*;
-
-import javax.naming.OperationNotSupportedException;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +24,16 @@ public class VueTest_3 {
 
 	@Autowired
 	private Vue vue;
-	
+
 	@Autowired
 	private ApplicationContext context;
-	
+
 	private Individu monIndividu;
-	
+
 	@Before
 	public void injectMock() {
 		ServiceIndividu mock = context.getBean(ServiceIndividuMock2.class);
-		
+
 		monIndividu = new Individu();
 		monIndividu.setIdRef("maRef");
 		monIndividu.setNom("toto");
@@ -43,13 +41,13 @@ public class VueTest_3 {
 		monIndividu.setType(Individu.Type.CANDIDAT);
 		monIndividu.setIdCandidat("idCandidat");
 		monIndividu.setIdInterimaire("idInterimaire");
-		
+
 		ReflectionTestUtils.setField(vue, "serviceIndividu", mock);
 		ReflectionTestUtils.setField(mock, "individu", monIndividu);
 	}
 
 	@Test
-	public void traitementReplaceTest() throws OperationNotSupportedException {
+	public void traitementReplaceTest() {
 		vue.start();
 		vue.traitement("int-nom-toto");
 		vue.traitement("int-prenom-titi");

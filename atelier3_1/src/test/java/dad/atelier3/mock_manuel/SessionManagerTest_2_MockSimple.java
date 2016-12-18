@@ -1,8 +1,8 @@
 package dad.atelier3.mock_manuel;
 
-import static org.junit.Assert.*;
-
-import javax.naming.OperationNotSupportedException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -39,7 +39,7 @@ public class SessionManagerTest_2_MockSimple {
 	}
 
 	@Test
-	public void bonneCommandeInterimaireTest() throws OperationNotSupportedException {
+	public void bonneCommandeInterimaireTest() {
 		vue.start();
 		vue.traitement("int-nom-azerty");
 		vue.traitement("int-prenom-titi");

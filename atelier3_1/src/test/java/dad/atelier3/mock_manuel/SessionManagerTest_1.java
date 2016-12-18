@@ -1,8 +1,8 @@
 package dad.atelier3.mock_manuel;
 
-import javax.naming.OperationNotSupportedException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import dad.atelier3.Vue;
+import dad.atelier3.exception.OperationNotSupportedException;
 import dad.atelier3.model.Individu;
 
 /*
@@ -23,14 +24,14 @@ public class SessionManagerTest_1 {
 	private Vue vue;
 
 	@Test(expected = OperationNotSupportedException.class)
-	public void mauvaiseCommandeTest() throws OperationNotSupportedException {
+	public void mauvaiseCommandeTest() {
 		vue.start();
 		vue.traitement("fjdk-jklds-fdsk");
 		vue.done();
 	}
 
 	@Test
-	public void bonneCommandeInterimaireTest() throws OperationNotSupportedException {
+	public void bonneCommandeInterimaireTest() {
 		vue.start();
 		vue.traitement("int-nom-azerty");
 		Individu ind1 = vue.getIndividu();
@@ -45,7 +46,7 @@ public class SessionManagerTest_1 {
 	}
 
 	@Test
-	public void bonneCommandeCandidatTest() throws OperationNotSupportedException {
+	public void bonneCommandeCandidatTest() {
 		vue.start();
 		vue.traitement("can-nom-azerty");
 		Individu ind1 = vue.getIndividu();

@@ -1,9 +1,8 @@
 package dad.atelier3.mockito;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
 
 import javax.annotation.Resource;
-import javax.naming.OperationNotSupportedException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +37,7 @@ public class VueTest_1 {
 	}
 
 	@Test
-	public void traitementReplaceTest() throws OperationNotSupportedException {
+	public void traitementReplaceTest() {
 		vue.start();
 		vue.traitement("int-nom-toto");
 		vue.traitement("int-prenom-titi");

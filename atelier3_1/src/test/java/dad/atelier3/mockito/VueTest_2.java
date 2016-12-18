@@ -10,7 +10,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import javax.annotation.Resource;
-import javax.naming.OperationNotSupportedException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -65,12 +64,12 @@ public class VueTest_2 {
 	}
 
 	@Before
-	public void mock() throws OperationNotSupportedException {
+	public void mock() {
 		MockitoAnnotations.initMocks(this);
 	}
 
 	@Test
-	public void traitementRemplacerTest() throws OperationNotSupportedException {
+	public void traitementRemplacerTest() {
 		// when(serviceIndividu.remplacer(anyString(), eq("ma-premiere-commande"))).thenReturn(monIndividu);
 		// when(serviceIndividu.remplacer(anyString(), eq("ma-seconde-commande"))).thenReturn(monIndividu);
 
@@ -90,7 +89,7 @@ public class VueTest_2 {
 	}
 
 	@Test
-	public void appelSuccessifTest() throws OperationNotSupportedException {
+	public void appelSuccessifTest() {
 		doReturn(monIndividu1, monIndividu2).when(serviceIndividu).remplacer(anyString(), eq("ma-troisieme-commande"));
 
 		// when(serviceIndividu.remplacer(anyString(), eq("ma-troisieme-commande"))).thenReturn(monIndividu1, monIndividu2);
@@ -114,7 +113,7 @@ public class VueTest_2 {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void exceptionTest() throws OperationNotSupportedException {
+	public void exceptionTest() {
 		doThrow(new IllegalArgumentException()).when(serviceIndividu).remplacer(anyString(), eq("ma-troisieme-commande"));
 
 		vue.start();
@@ -126,7 +125,7 @@ public class VueTest_2 {
 	}
 
 	@Test
-	public void captureTest() throws OperationNotSupportedException {
+	public void captureTest() {
 		ArgumentCaptor<String> refIndividuCaptor = ArgumentCaptor.forClass(String.class);
 		doReturn(monIndividu1).when(serviceIndividu).remplacer(refIndividuCaptor.capture(), anyString());
 
