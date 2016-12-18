@@ -1,16 +1,15 @@
-package dad.atelier3_2;
+package dad.atelier3;
 
 import javax.annotation.Resource;
-import javax.naming.OperationNotSupportedException;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dad.atelier3_2.model.Individu;
-import dad.atelier3_2.model.Session;
-import dad.atelier3_2.service.ServiceIndividu;
-import dad.atelier3_2.service.SessionManager;
+import dad.atelier3.model.Individu;
+import dad.atelier3.model.Session;
+import dad.atelier3.service.ServiceIndividu;
+import dad.atelier3.service.SessionManager;
 
 @RestController
 public class Vue {
@@ -25,12 +24,12 @@ public class Vue {
 	private Individu individu;
 
 	@RequestMapping("/")
-	public String page(@RequestParam(value = "cmd", required = true) String commande) throws OperationNotSupportedException {
+	public Individu page(@RequestParam(value = "cmd", required = true) String commande) {
 		start();
 		traitement(commande);
 		done();
 
-		return individu.toString();
+		return individu;
 	}
 
 	public void start() {
@@ -38,7 +37,7 @@ public class Vue {
 		individu = null;
 	}
 
-	public void traitement(String commande) throws OperationNotSupportedException {
+	public void traitement(String commande) {
 		if (session.isInPopin()) {
 			individu = serviceIndividu.ajouter(session.getRefIndividu(), commande);
 		} else {

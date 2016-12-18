@@ -1,9 +1,9 @@
-package dad.atelier3_2.service;
+package dad.atelier3.service;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
-import dad.atelier3_2.model.Session;
+import dad.atelier3.model.Session;
 
 @Service
 public class SessionManager {
