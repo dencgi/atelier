@@ -1,0 +1,37 @@
+@startuml
+
+!define SERVICE (S, orange) Service
+
+title Diagramme de séquence Atelier 3
+
+autonumber
+hide footbox
+
+actor Vue
+participant SessionManager << SERVICE >>
+participant ServiceIndividu << SERVICE >>
+database RepoIndividu
+
+' start
+Vue -> SessionManager : getCurrentSession()
+activate SessionManager
+Vue <-- SessionManager : Session(pid, parent, refIndividu)
+deactivate SessionManager
+
+' traitement
+Vue -> ServiceIndividu : ajouter/modifier(refIndividu, commande)
+activate ServiceIndividu
+
+ServiceIndividu -> ServiceIndividu : getRepo()
+ServiceIndividu -> RepoIndividu : find(refIndividu)
+activate RepoIndividu
+ServiceIndividu <-- RepoIndividu : Individu
+deactivate RepoIndividu
+ServiceIndividu -> ServiceIndividu : opération d'ajout/modification
+
+Vue <-- ServiceIndividu : Individu
+deactivate ServiceIndividu
+
+' done
+
+@enduml
