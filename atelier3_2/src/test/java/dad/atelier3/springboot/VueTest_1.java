@@ -19,7 +19,7 @@ import dad.atelier3.model.Individu;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class VueTest {
+public class VueTest_1 {
 
 	@Autowired
 	private MockMvc mvc;
