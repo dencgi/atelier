@@ -1,4 +1,4 @@
-package dad.atelier3_2.dao;
+package dad.atelier3.dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Repository;
 
-import dad.atelier3_2.model.Individu;
+import dad.atelier3.model.Individu;
 
 @Repository
 public class RepoCandidat implements RepoIndividu {

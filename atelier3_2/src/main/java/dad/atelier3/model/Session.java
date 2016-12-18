@@ -1,4 +1,4 @@
-package dad.atelier3_2.model;
+package dad.atelier3.model;
 
 public class Session {
 

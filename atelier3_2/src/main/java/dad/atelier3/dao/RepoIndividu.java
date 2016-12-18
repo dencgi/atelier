@@ -1,6 +1,6 @@
-package dad.atelier3_2.dao;
+package dad.atelier3.dao;
 
-import dad.atelier3_2.model.Individu;
+import dad.atelier3.model.Individu;
 
 @FunctionalInterface
 public interface RepoIndividu {

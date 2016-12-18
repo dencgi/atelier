@@ -1,4 +1,4 @@
-package dad.atelier3_2;
+package dad.atelier3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
