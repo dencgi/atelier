@@ -8,9 +8,11 @@ import dad.atelier2.table.Croupier;
 
 public class App {
 
-	public static void main(String[] args) {
-		// ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+	private App() {
+		// Classe statique.
+	}
 
+	public static void main(String[] args) {
 		List<String> nomsJoueurs = Arrays.asList(new String[] { "Pierre", "André", "Jacques", "Jean", "Philippe", "Barthélémy", "Matthieu", "Thomas", "Paul" });
 
 		Croupier c = new Croupier();
@@ -21,9 +23,9 @@ public class App {
 
 		c.distribuer();
 
-		System.out.println(c);
+		System.out.println(c); // NOSONAR
 
-		System.out.println(c.getGagnants());
+		System.out.println(c.getGagnants()); // NOSONAR
 	}
 
 }

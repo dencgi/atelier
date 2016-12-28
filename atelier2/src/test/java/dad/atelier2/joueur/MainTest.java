@@ -36,7 +36,7 @@ public class MainTest {
 		cartePrecedente = null;
 		for (Carte c : main) {
 			if (cartePrecedente != null) {
-				trie = trie && cartePrecedente.compareTo(c) < 0;
+				trie = trie && cartePrecedente.compareTo(c) <= 0;
 			}
 			cartePrecedente = c;
 		}
