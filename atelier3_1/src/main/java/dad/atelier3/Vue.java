@@ -32,7 +32,7 @@ public class Vue {
 		vue.traitement("int-prenom-titi");
 		vue.done();
 
-		System.out.println(vue.individu);
+		System.out.println(vue.individu); //NOSONAR
 
 		context.close();
 	}
