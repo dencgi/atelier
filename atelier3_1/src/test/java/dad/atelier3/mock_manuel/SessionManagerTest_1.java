@@ -2,6 +2,8 @@ package dad.atelier3.mock_manuel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +30,19 @@ public class SessionManagerTest_1 {
 		vue.start();
 		vue.traitement("fjdk-jklds-fdsk");
 		vue.done();
+	}
+
+	@Test
+	public void mauvaiseCommandeTest_v2() {
+		try {
+			vue.start();
+			vue.traitement("fjdk-jklds-fdsk");
+			// vue.traitement("int-nom-azerty");
+			vue.done();
+			fail("Une exception devrait être jetée.");
+		} catch (OperationNotSupportedException e) {
+			assertTrue("Aucune exception n'a été jetée", true);
+		}
 	}
 
 	@Test
