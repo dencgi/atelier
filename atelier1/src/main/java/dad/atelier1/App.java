@@ -28,12 +28,12 @@ public class App {
 	}
 
 	public void start() {
-		System.out.println(go);
+		System.out.println(go); // NOSONAR
 
 		CleVoiture maCleVoiture = concessionnaire.commanderVoiture(ModelePeugeot.P305);
 		Voiture maCleVoitureDeSecours = concessionnaire.commanderVoiture(ModelePeugeot.P305).getVoiture();
 		Voiture maRenault = concessionnaire.commanderVoiture(ModeleRenault.R5).getVoiture();
-		System.out.println(maCleVoiture.getVoiture());
+		System.out.println(maCleVoiture.getVoiture()); // NOSONAR
 		maCleVoiture.getVoiture().rouler(200);
 		maCleVoiture.getVoiture().remplirReservoir(70);
 		maCleVoiture.getVoiture().demarrer(maCleVoiture.getCle());
@@ -44,8 +44,8 @@ public class App {
 		maCleVoiture.getVoiture().rouler(200);
 		maCleVoiture.getVoiture().rouler(200);
 		maCleVoiture.getVoiture().rouler(200);
-		System.out.println(maCleVoiture.getVoiture());
-		System.out.println(maCleVoitureDeSecours);
-		System.out.println(maRenault);
+		System.out.println(maCleVoiture.getVoiture()); // NOSONAR
+		System.out.println(maCleVoitureDeSecours); // NOSONAR
+		System.out.println(maRenault); // NOSONAR
 	}
 }
