@@ -11,6 +11,9 @@ import dad.atelier3.model.Session;
 import dad.atelier3.service.ServiceIndividu;
 import dad.atelier3.service.SessionManager;
 
+// TODO : Ajouter des tests avec la base h2.
+// TODO : Ajouter des tests pour mocker tout un service.
+
 @RestController
 public class Vue {
 
