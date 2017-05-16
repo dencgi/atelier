@@ -5,6 +5,8 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,26 @@ public class SessionManagerTest_1 {
 	@Autowired
 	private Vue vue;
 
+	@Before
+	public void before() {
+		vue.start();
+	}
+
+	@After
+	public void after() {
+		vue.done();
+	}
+
 	@Test(expected = OperationNotSupportedException.class)
 	public void mauvaiseCommandeTest() {
-		vue.start();
 		vue.traitement("fjdk-jklds-fdsk");
-		vue.done();
 	}
 
 	@Test
 	public void mauvaiseCommandeTest_v2() {
 		try {
-			vue.start();
 			vue.traitement("fjdk-jklds-fdsk");
 			// vue.traitement("int-nom-azerty");
-			vue.done();
 			fail("Une exception devrait être jetée.");
 		} catch (OperationNotSupportedException e) {
 			assertTrue("Aucune exception n'a été jetée", true);
@@ -47,12 +55,10 @@ public class SessionManagerTest_1 {
 
 	@Test
 	public void bonneCommandeInterimaireTest() {
-		vue.start();
 		vue.traitement("int-nom-azerty");
 		Individu ind1 = vue.getIndividu();
 		vue.traitement("int-prenom-titi");
 		Individu ind2 = vue.getIndividu();
-		vue.done();
 
 		assertSame("Il s'agit d'un seul et même individu", ind1, ind2);
 		assertEquals("Il s'agit d'un intérimaire", Individu.Type.INTERIMAIRE, vue.getIndividu().getType());
@@ -62,12 +68,10 @@ public class SessionManagerTest_1 {
 
 	@Test
 	public void bonneCommandeCandidatTest() {
-		vue.start();
 		vue.traitement("can-nom-azerty");
 		Individu ind1 = vue.getIndividu();
 		vue.traitement("can-prenom-titi");
 		Individu ind2 = vue.getIndividu();
-		vue.done();
 
 		assertSame("Il s'agit d'un seul et même individu", ind1, ind2);
 		assertEquals("Il s'agit d'un candidat", Individu.Type.CANDIDAT, vue.getIndividu().getType());

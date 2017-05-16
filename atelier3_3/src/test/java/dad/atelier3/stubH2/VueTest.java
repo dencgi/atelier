@@ -103,14 +103,14 @@ public class VueTest {
 
 	@Test
 	public void plantageTest() throws Exception {
-		Individu monmonIndividuEnTrop = new Individu();
-		monmonIndividuEnTrop.setIdRef("3");
-		monmonIndividuEnTrop.setNom("tata");
-		monmonIndividuEnTrop.setPrenom("titi");
-		monmonIndividuEnTrop.setType(Individu.Type.CANDIDAT);
-		monmonIndividuEnTrop.setIdCandidat("1");
-		monmonIndividuEnTrop.setIdInterimaire(null);
-		repoCandidat.saveAndFlush(monmonIndividuEnTrop);
+		Individu monIndividuEnTrop = new Individu();
+		monIndividuEnTrop.setIdRef("3");
+		monIndividuEnTrop.setNom("tata");
+		monIndividuEnTrop.setPrenom("titi");
+		monIndividuEnTrop.setType(Individu.Type.CANDIDAT);
+		monIndividuEnTrop.setIdCandidat("1");
+		monIndividuEnTrop.setIdInterimaire(null);
+		repoCandidat.saveAndFlush(monIndividuEnTrop);
 
 		//@formatter:off
 		mvc.perform(MockMvcRequestBuilders.get("/candidat/1").accept(MediaType.APPLICATION_JSON))

@@ -4,7 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +31,7 @@ public class SessionManagerTest_2_MockSimple {
 	@Autowired
 	private Vue vue;
 
-	@Before
+	@PostConstruct
 	public void mock() {
 		SessionManager sessionManagerMock = new SessionManager() {
 			public Session getCurrentSession() {
@@ -38,12 +41,20 @@ public class SessionManagerTest_2_MockSimple {
 		ReflectionTestUtils.setField(vue, "sessionManager", sessionManagerMock);
 	}
 
+	@Before
+	public void before() {
+		vue.start();
+	}
+
+	@After
+	public void after() {
+		vue.done();
+	}
+
 	@Test
 	public void bonneCommandeInterimaireTest() {
-		vue.start();
 		vue.traitement("int-nom-azerty");
 		vue.traitement("int-prenom-titi");
-		vue.done();
 
 		assertEquals("Il s'agit d'un intérimaire", Individu.Type.INTERIMAIRE, vue.getIndividu().getType());
 		assertNotEquals("Le nom n'a pas été remplacé", "azerty", vue.getIndividu().getNom());
