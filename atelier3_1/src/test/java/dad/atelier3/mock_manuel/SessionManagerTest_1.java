@@ -7,7 +7,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,6 +25,9 @@ import dad.atelier3.model.Individu;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = "classpath:/application-context.xml")
 public class SessionManagerTest_1 {
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Autowired
 	private Vue vue;
@@ -51,6 +56,13 @@ public class SessionManagerTest_1 {
 		} catch (OperationNotSupportedException e) {
 			assertTrue("Aucune exception n'a été jetée", true);
 		}
+	}
+
+	@Test
+	public void mauvaiseCommandeTest_v3() {
+		thrown.expect(OperationNotSupportedException.class);
+		thrown.expectMessage("La commande ne ressemble à rien.");
+		vue.traitement("fjdk-jklds-fdsk");
 	}
 
 	@Test
