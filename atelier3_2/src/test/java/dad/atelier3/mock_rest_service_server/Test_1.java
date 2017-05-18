@@ -28,13 +28,13 @@ public class Test_1 {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	private RestTemplate restTemplate;
+	private RestTemplate client;
 	private MockRestServiceServer mockServer;
 
 	@Before
 	public void init() {
-		restTemplate = new RestTemplate();
-		mockServer = MockRestServiceServer.createServer(restTemplate);
+		client = new RestTemplate();
+		mockServer = MockRestServiceServer.createServer(client);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class Test_1 {
 		mockServer.expect(ExpectedCount.once(), requestTo("/toto/1")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(monRetour, MediaType.APPLICATION_JSON));
 
-		String result = restTemplate.getForObject("/toto/{id}", String.class, 1);
+		String result = client.getForObject("/toto/{id}", String.class, 1);
 
 		assertEquals("Le retour n'est pas correct.", monRetour, result);
 		mockServer.verify();
@@ -58,8 +58,8 @@ public class Test_1 {
 		mockServer.expect(ExpectedCount.manyTimes(), requestTo("/toto/2")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(monRetour2, MediaType.APPLICATION_JSON));
 
-		String r1 = restTemplate.getForObject("/toto/{id}", String.class, 1);
-		String r2 = restTemplate.getForObject("/toto/{id}", String.class, 2);
+		String r1 = client.getForObject("/toto/{id}", String.class, 1);
+		String r2 = client.getForObject("/toto/{id}", String.class, 2);
 
 		assertEquals("Les valeurs devraient être les mêmes.", r1, monRetour1);
 		assertEquals("Les valeurs devraient être les mêmes.", r2, monRetour2);
@@ -72,7 +72,7 @@ public class Test_1 {
 		thrown.expect(HttpClientErrorException.class);
 		thrown.expectMessage("404");
 
-		restTemplate.getForObject("/toto/{id}", String.class, 1);
+		client.getForObject("/toto/{id}", String.class, 1);
 
 		mockServer.verify();
 	}
