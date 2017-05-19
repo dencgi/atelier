@@ -1,23 +1,25 @@
 package dad.atelier3;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import dad.atelier3.dao.RepoCandidat;
-import dad.atelier3.dao.RepoInterimaire;
+import dad.atelier3.dao.RepoIndividuNewSchool;
 import dad.atelier3.model.Individu;
+
+// TODO : comment interroger une table qui n'existe pas ?
+// TODO : comment faire une requête avec une colonne qui n'existe pas ?
+// TODO : comment obtenir des erreurs pour tester les problèmes SQL ?
+// TODO : montrer les différentes fonctionnalités de JpaRepository.
+// TODO : montrer comment faire sans JpaRepository, pour voir les avantages que procure l'outil.
 
 @SpringBootApplication
 public class Application { // NOSONAR
 
-	@Resource
-	private RepoCandidat repoCandidat;
-
-	@Resource
-	private RepoInterimaire repoInterimaire;
+	@Autowired
+	private RepoIndividuNewSchool repo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args); // NOSONAR
@@ -32,7 +34,7 @@ public class Application { // NOSONAR
 		monIndividu1.setType(Individu.Type.CANDIDAT);
 		monIndividu1.setIdCandidat("1");
 		monIndividu1.setIdInterimaire(null);
-		repoCandidat.saveAndFlush(monIndividu1);
+		repo.saveAndFlush(monIndividu1);
 
 		Individu monIndividu2 = new Individu();
 		monIndividu2.setIdRef("2");
@@ -41,6 +43,6 @@ public class Application { // NOSONAR
 		monIndividu2.setType(Individu.Type.INTERIMAIRE);
 		monIndividu2.setIdCandidat(null);
 		monIndividu2.setIdInterimaire("1");
-		repoInterimaire.saveAndFlush(monIndividu2);
+		repo.saveAndFlush(monIndividu2);
 	}
 }

@@ -1,9 +1,19 @@
 package dad.atelier3.dao;
 
+import java.util.List;
+
 import dad.atelier3.model.Individu;
 
-@FunctionalInterface
 public interface RepoIndividu {
 
-	Individu findByIdRef(String refIndividu);
+	Individu save(Individu individu);
+
+	Individu find(String refId);
+
+	Individu findByIdInterimaire(String idInterimaire);
+
+	Individu findByIdCandidat(String idCandidat);
+
+	List<Individu> findAllCandidat();
+
 }

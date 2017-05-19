@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_individu")
+@Table(name = "t_individu")
 public class Individu {
 
 	@Id
@@ -92,6 +92,58 @@ public class Individu {
 	public String toString() {
 		return "Individu [idRef=" + idRef + ", type=" + type + ", idInterimaire=" + idInterimaire + ", idCandidat=" + idCandidat + ", nom=" + nom + ", prenom="
 				+ prenom + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idCandidat == null) ? 0 : idCandidat.hashCode());
+		result = prime * result + ((idInterimaire == null) ? 0 : idInterimaire.hashCode());
+		result = prime * result + ((idRef == null) ? 0 : idRef.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Individu other = (Individu) obj;
+		if (idCandidat == null) {
+			if (other.idCandidat != null)
+				return false;
+		} else if (!idCandidat.equals(other.idCandidat))
+			return false;
+		if (idInterimaire == null) {
+			if (other.idInterimaire != null)
+				return false;
+		} else if (!idInterimaire.equals(other.idInterimaire))
+			return false;
+		if (idRef == null) {
+			if (other.idRef != null)
+				return false;
+		} else if (!idRef.equals(other.idRef))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
 	}
 
 }
